@@ -1,0 +1,20 @@
+.wrapper {
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.wrapper:hover {
+  background: #F1FCFF;
+}
+
+.wrapper:last-child {
+  padding-bottom: 15px;
+}
+
+.wrapper .name {
+  margin-left: 5px;
+}

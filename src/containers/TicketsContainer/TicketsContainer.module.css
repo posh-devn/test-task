@@ -1,0 +1,27 @@
+.wrapper {
+  max-width: 765px;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+}
+
+.filter {
+  width: 232px;
+}
+
+.content {
+  margin-left: 20px;
+  flex: 1;
+}
+
+.header {
+  justify-content: center;
+  align-content: center;
+  display: flex;
+}
+
+.tickets {
+  margin-top: 20px;
+}

@@ -1,0 +1,42 @@
+.wrapper {
+  display: flex;
+}
+
+.button {
+  padding: 15px 10px;
+  width: 100%;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  background: #FFFFFF;
+  border: 1px solid #DFE5EC;
+  box-sizing: border-box;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+}
+
+.button.active {
+  background: #2196F3;
+  border-color: #2196F3;
+  color: #FFFFFF;
+}
+
+.button.active:hover {
+  background: #1789e4;
+}
+
+.button:hover {
+  background: #F1FCFF;
+}
+
+.button:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.button:last-child {
+  border-radius: 0 8px 8px 0;
+}

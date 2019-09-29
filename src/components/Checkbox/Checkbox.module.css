@@ -1,0 +1,28 @@
+.wrapper {
+  display: inline-block;
+  margin-right: 5px;
+  height: 19px;
+  width: 19px;
+}
+
+.input {
+  display: none;
+}
+
+.face {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  border: 1px solid #d2d5d6;
+  border-radius: 2px;
+  z-index: 1;
+  transition: all .2s ease;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.face.checked {
+  border: 1px solid #2196F3;
+}
