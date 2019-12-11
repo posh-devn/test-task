@@ -28,7 +28,7 @@ const CardView = ({carrier, price, segments}: Props) => (
   <div className={styles.wrapper}>
     <div className={styles.commonInfo}>
       <div className={styles.price}>{formatPrice(price)} Р</div>
-      <div><img width={99} height={36} src={`//pics.avs.io/99/36/${carrier}.png`}/></div>
+      <div><img alt={carrier} width={99} height={36} src={`//pics.avs.io/99/36/${carrier}.png`}/></div>
     </div>
       {map(segments, ({
         origin,

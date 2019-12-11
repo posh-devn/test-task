@@ -1,1 +1,1 @@
-export {default} from './TicketsContainer'
+export { default } from './TicketsContainer';

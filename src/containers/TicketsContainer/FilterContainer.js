@@ -21,7 +21,7 @@ import {
   FILTER_OPTIONS,
   ALL_OPTION_FILTER,
 } from "./filter";
-import {getFilterSelector} from "../../redux/selectors/filterSelectors";
+import {getFilter} from "../../redux/selectors/filterSelectors";
 
 const getFilterStateByType = (props, filter: FilterType): boolean => get(props, ['value', filter]);
 const unselectOptions = (filterValue, filter: FilterType):FilterStateType => ({
@@ -42,7 +42,7 @@ const enhancer: HOC<{
   onChangeOption: (code:string, value: boolean) => void
 }, *> = compose(
   connect((state) => ({
-    value: getFilterSelector(state)
+    value: getFilter(state)
   }), {
     setFilter: setFilterAction
   }),

@@ -1,26 +1,18 @@
 // @flow
 import React from 'react';
 import {connect} from "react-redux";
-import filter from "lodash/omit";
 import omit from "lodash/omit";
 import {pure, compose} from "recompose";
 import type {HOC} from "recompose/dist/Recompose.cjs";
 
-import {getFilterSelector} from "../../../redux/selectors/filterSelectors";
-import {getSortingTypeSelector} from "../../../redux/selectors/sortingSelectors";
-import {showTickets} from "../../../redux/actions";
+import {pushTickets} from "../../../redux/actions";
 
+import repository, {PacketTicketsLoader} from "../../../repository";
 
-import type {FilterStateType} from "../filter-types.flow";
-import type  {SortingType} from "../sorting-types.flow";
-import {getIsHasLoadDataSelector} from "../../../redux/selectors";
-
+import type {Ticket} from "../../../repository";
 
 type InProps = {
-  filter: FilterStateType,
-  sortingType: SortingType,
-  isHasLoadData: boolean,
-  loadTickets: () => void
+  pushTickets: (Array<Ticket>) => void,
 }
 
 /**
@@ -30,25 +22,37 @@ type InProps = {
  */
 const withLifeCycle: HOC<*, InProps>  = (BaseHOCComponent) => {
   class Component extends React.Component<InProps> {
-    componentDidMount() {
-      this.props.loadTickets();
+    packetLoader: PacketTicketsLoader;
+
+    async componentDidMount() {
+      // Получаем SearchId
+      const searchId = await repository.createSearch();
+
+      // Инициализируем пакетный загрузчик билетов
+      this.packetLoader = new PacketTicketsLoader(
+        searchId,
+        this.onLoadPacket,
+        1000
+      );
+      this.packetLoader.load();
     }
 
-    componentDidUpdate(prevProps) {
-      if (
-        this.props.filter !== prevProps.filter ||
-        this.props.sortingType !== prevProps.sortingType
-      ) {
-        this.props.loadTickets();
-      }
+    /**
+     * Функция callback для срабатывания загрузчика пакетов
+     * @param tickets
+     */
+    onLoadPacket = (tickets: Array<Ticket>) => {
+      this.props.pushTickets(tickets);
+    }
+
+    componentWillUnmount() {
+      this.packetLoader.destroy();
     }
 
     render() {
-      // Удаляю пропсы, которые были нужны для вычислений, чтобы нормально сработал pure
-      const props = omit(this.props, ['filter', 'sortingType', 'isHasLoadData']);
-
+      // Удаляем ненужные пропсы
       return (
-        <BaseHOCComponent {...props} />
+        <BaseHOCComponent {...omit(this.props, ['pushTickets'])} />
       )
     }
   }
@@ -56,17 +60,9 @@ const withLifeCycle: HOC<*, InProps>  = (BaseHOCComponent) => {
   return Component;
 }
 
-const enhancer: HOC<{
-  filter: FilterStateType,
-  sortingType: SortingType,
-  loadTickets: () => void
-}, *> = compose(
-  connect((state) => ({
-    filter: getFilterSelector(state),
-    sortingType: getSortingTypeSelector(state),
-    isHasLoadData: getIsHasLoadDataSelector(state),
-  }), {
-    loadTickets: showTickets
+const enhancer: HOC<*, *> = compose(
+  connect(null, {
+    pushTickets
   }),
   withLifeCycle,
   pure

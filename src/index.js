@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
 
-import {reduxStore} from "./redux";
+import { reduxStore } from './redux';
 import SearchContainer from './containers/TicketsContainer';
 
 import styles from './styles.module.css';

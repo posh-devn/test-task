@@ -8,7 +8,7 @@ import type {HOC} from "recompose/dist/Recompose.cjs";
 import type {SortingType} from "./sorting-types.flow";
 
 import {changeSorting} from "../../redux/actions";
-import { getSortingTypeSelector} from "../../redux/selectors/sortingSelectors";
+import { getSortingType} from "../../redux/selectors/sortingSelectors";
 
 type OutProps = {
   value: SortingType,
@@ -24,7 +24,7 @@ type OutProps = {
  */
 const enhancer: HOC<OutProps, *> = compose(
   connect(state => ({
-    value: getSortingTypeSelector(state)
+    value: getSortingType(state)
   }), {
     changeSorting
   }),

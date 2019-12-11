@@ -1,1 +1,1 @@
-export {default as reduxStore} from './store';
+export { default as reduxStore } from './store';

@@ -1,7 +1,7 @@
 {
-  "name": "aviasales-test",
+  "name": "test-task",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "axios": "^0.19.0",
     "classnames": "^2.2.6",
@@ -10,7 +10,6 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-redux": "^7.1.1",
-    "react-scripts": "3.1.2",
     "recompose": "^0.30.0",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
@@ -38,6 +37,7 @@
     ]
   },
   "devDependencies": {
-    "flow-bin": "^0.108.0"
+    "flow-bin": "^0.108.0",
+    "react-scripts": "3.1.2"
   }
 }

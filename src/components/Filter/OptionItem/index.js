@@ -1,1 +1,1 @@
-export {default} from './OptionItem';
+export { default } from './OptionItem';
